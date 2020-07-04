@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Core Online Tutorial - Product List</title>
+    <meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8">
+    <link href="http://cdn.jsdeliver.net/webjars/bootstrap/4.5.0/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen">
+    <script src="http://cdn.jsdeliver.net/webjars/jquery/3.5.1/jquery.min.js"
+            th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <link href="static/css/spring-core.css"
+          th:href="@{css/spring-core.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+    <div class="container">
+        <div th:if="${not #lists.isEmpty(products)}">
+            <h2>Products</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>Id</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>ImageUrl</th>
+                    <th>Link</th>
+                    <th>Edit</th>
+                </tr>
+                <tr th:each="products : ${products}">
+                    <td th:text="${products.id}"></td>
+                    <td th:text="${products.description}"></td>
+                    <td th:text="${products.price}"></td>
+                    <td th:text="${products.imageUrl}"></td>
+                    <td><a th:href="${'/product/'+ products.id}">View</a></td>
+                    <td><a th:href="${'/product/edit/'+ products.id}">Edit</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="row">
+            <a href="/product/new"><button class="btn btn-light">New Product</button></a>
+        </div>
+    </div>
+</body>
+</html>
