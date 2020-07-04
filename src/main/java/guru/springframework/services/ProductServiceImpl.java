@@ -40,10 +40,18 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
-    private int getNextKey() {
+    @Override
+    public void delete(Integer id) {
+        products.remove(id);
+    }
 
-        int nextKey = Collections.max(products.keySet()) + 1;
-        return nextKey;
+    private int getNextKey() {
+        if (products.size() != 0) {
+            int nextKey = Collections.max(products.keySet()) + 1;
+            return nextKey;
+        } else {
+            return 1;
+        }
     }
 
 
