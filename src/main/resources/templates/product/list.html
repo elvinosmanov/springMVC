@@ -9,7 +9,7 @@
     <script src="http://cdn.jsdeliver.net/webjars/jquery/3.5.1/jquery.min.js"
             th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
     <link href="static/css/spring-core.css"
-          th:href="@{../static/css/spring-core.css}" rel="stylesheet" media="screen"/>
+          th:href="@{../../static/css/spring-core.css}" rel="stylesheet" media="screen"/>
 </head>
 <body>
     <div class="container">
@@ -30,7 +30,7 @@
                     <td th:text="${products.description}"></td>
                     <td th:text="${products.price}"></td>
                     <td th:text="${products.imageUrl}"></td>
-                    <td><a th:href="${'/product/'+ products.id}">View</a></td>
+                    <td><a th:href="${'/product/show/'+ products.id}">View</a></td>
                     <td><a th:href="${'/product/edit/'+ products.id}">Edit</a></td>
                     <td><a th:href="${'/product/delete/'+ products.id}">Delete</a></td>
                 </tr>

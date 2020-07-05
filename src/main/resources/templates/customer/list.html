@@ -9,7 +9,7 @@
     <script src="http://cdn.jsdeliver.net/webjars/jquery/3.5.1/jquery.min.js"
             th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
     <link href="static/css/spring-core.css"
-          th:href="@{../static/css/spring-core.css}" rel="stylesheet" media="screen"/>
+          th:href="@{../../static/css/spring-core.css}" rel="stylesheet" media="screen"/>
 </head>
 <body>
     <div class="container">
@@ -40,7 +40,7 @@
                     <td th:text="${customers.city}"></td>
                     <td th:text="${customers.state}"></td>
                     <td th:text="${customers.zipCode}"></td>
-                    <td><a th:href="${'/customer/'+ customers.id}">View</a></td>
+                    <td><a th:href="${'/customer/show/'+ customers.id}">View</a></td>
                     <td><a th:href="${'/customer/edit/'+ customers.id}">Edit</a></td>
                     <td><a th:href="${'/customer/delete/'+ customers.id}">Delete</a></td>
 

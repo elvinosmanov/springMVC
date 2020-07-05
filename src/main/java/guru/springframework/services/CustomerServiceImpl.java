@@ -1,106 +1,76 @@
 package guru.springframework.services;
 
 import guru.springframework.domain.Customer;
+import guru.springframework.domain.DomainObject;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
 
 @Service
-public class CustomerServiceImpl implements CustomerService {
+public class CustomerServiceImpl extends AbstractMapService implements CustomerService {
 
-    private Map<Integer, Customer> customers;
-
-    public CustomerServiceImpl() {
-        loadCustomers();
+    @Override
+    public List<DomainObject> listAll() {
+        return super.listAll();
     }
 
     @Override
-    public List<Customer> listAllCustomers() {
-
-        return new ArrayList<>(customers.values());
-
+    public Customer getById(Integer id) {
+        return (Customer) super.getById(id);
     }
 
     @Override
-    public Customer getCustomer(Integer id) {
-        return customers.get(id);
+    public Customer saveOrUpdate(Customer domainObject) {
+        return (Customer) super.saveOrUpdate(domainObject);
+    }
+
+
+    @Override
+    public void delete(Integer id) {
+        super.delete(id);
     }
 
     @Override
-    public Customer saveOrUpdateCustomer(Customer customer) {
-        if(customer!=null){
-            if(customer.getId()==null){
-                customer.setId(getNextId());
-            }
-            customers.put(customer.getId(), customer);
-            return customer;
-        }else{
-            throw new RuntimeException("Customer's id is null");
-        }
-    }
-
-    @Override
-    public void deleteCustomer(Integer id) {
-        customers.remove(id);
-    }
-
-    private int getNextId(){
-        if(customers.size()!=0){
-            int getNextId = Collections.max(customers.keySet())+1;
-            return getNextId;
-        }else {
-            return 1;
-        }
-    }
-
-    private void loadCustomers() {
-        customers = new HashMap<>();
+    protected void loadDomainObject() {
+        domainMap = new HashMap<>();
 
         Customer customer1 = new Customer();
-
         customer1.setId(1);
         customer1.setFirstName("Elvin");
         customer1.setLastName("Osmanov");
-        customer1.setEmail("youngtronik@gmail.com");
-        customer1.setPhoneNumber("0554261998");
-        customer1.setAddressLineOne("Nizami street");
-        customer1.setAddressLineTwo("Gence prospect");
-        customer1.setCity("Baku");
-        customer1.setState("Azerbaijan");
-        customer1.setZipCode("1104");
-
-        customers.put(1, customer1);
+        customer1.setAddressLineOne("1 Main St");
+        customer1.setCity("Miami");
+        customer1.setState("Florida");
+        customer1.setZipCode("33101");
+        customer1.setEmail("micheal@burnnotice.com");
+        customer1.setPhoneNumber("305.333.0101");
 
         Customer customer2 = new Customer();
-
         customer2.setId(2);
-        customer2.setFirstName("Nermin");
-        customer2.setLastName("Osmanova");
-        customer2.setEmail("bakugan192@gmail.com");
-        customer2.setPhoneNumber("0554261998");
-        customer2.setAddressLineOne("Nizami street");
-        customer2.setAddressLineTwo("Gence prospect");
-        customer2.setCity("Gence");
-        customer2.setState("Azerbaijan");
-        customer2.setZipCode("1104");
-
-        customers.put(2, customer2);
+        customer2.setFirstName("Fiona");
+        customer2.setLastName("Glenanne");
+        customer2.setAddressLineOne("1 Key Biscane Ave");
+        customer2.setCity("Miami");
+        customer2.setState("Florida");
+        customer2.setZipCode("33101");
+        customer2.setEmail("fiona@burnnotice.com");
+        customer2.setPhoneNumber("305.323.0233");
 
         Customer customer3 = new Customer();
-
         customer3.setId(3);
-        customer3.setFirstName("Emin");
-        customer3.setLastName("Qaralov");
-        customer3.setEmail("youngtronik@gmail.com");
-        customer3.setPhoneNumber("0556095542");
-        customer3.setAddressLineOne("Nizami street");
-        customer3.setAddressLineTwo("Gence prospect");
-        customer3.setCity("Baku");
-        customer3.setState("Azerbaijan");
-        customer3.setZipCode("1104");
+        customer3.setFirstName("Ya Allah");
+        customer3.setLastName("Axe");
+        customer3.setAddressLineOne("1 Little Cuba Road");
+        customer3.setCity("Miami");
+        customer3.setState("Florida");
+        customer3.setZipCode("33101");
+        customer3.setEmail("sam@burnnotice.com");
+        customer3.setPhoneNumber("305.426.9832");
 
-        customers.put(3, customer3);
+        domainMap.put(1, customer1);
+        domainMap.put(2, customer2);
+        domainMap.put(3, customer3);
     }
-
 
 }
